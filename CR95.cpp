@@ -1,13 +1,12 @@
 #include "CR95.h"
 #include "mbed.h"
-#include "helper.h"
+//#include "helper.h"
 
 /*Constructor for class. This sets the pins and initial data*/
-CR95::CR95(PinName SSI_0, PinName SSI_1, PinName CS, PinName IRQ_IN, PinName MOSI, PinName MISO, PinName CLK): _SSI_0(SSI_0)
-                                                                                                              ,_SSI_1(SSI_1)
-                                                                                                              ,_CS(CS)
-                                                                                                              ,_IRQ_IN(IRQ_IN)
-                                                                                                              ,_spi(MOSI,MISO,CLK)
+CR95::CR95(PinName SSI, PinName CS, PinName IRQ_IN, PinName MOSI, PinName MISO, PinName CLK): _SSI(SSI)
+                                                                                             ,_CS(CS)
+                                                                                             ,_IRQ_IN(IRQ_IN)
+                                                                                             ,_spi(MOSI,MISO,CLK)
 {
     _tagPresent = false;
     _res = 0;
@@ -17,8 +16,7 @@ CR95::CR95(PinName SSI_0, PinName SSI_1, PinName CS, PinName IRQ_IN, PinName MOS
 /*Initialises the device*/
 void CR95::init()
 {
-    _SSI_0 = 1;
-    _SSI_1 = 0;
+    _SSI = 1;
     _IRQ_IN = 1;
     wait_ms(100);
     
@@ -75,7 +73,3 @@ void CR95::UpdateEXE()
     Select_ISO_IEC_15693_Protocol();
     Check15693TagPresent();
 }
-
-
-
-

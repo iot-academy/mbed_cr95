@@ -1,6 +1,6 @@
 #include "CR95.h"
 #include "mbed.h"
-#include "helper.h"
+//#include "helper.h"
 
 
 void CR95::writeCmd(unsigned short cmd, unsigned short dataLen)
@@ -92,6 +92,4 @@ void CR95::ProtocolSelect(unsigned short length, unsigned short protocol, unsign
     
     writeCmd(CMD_PROTOCOLSELECT, 2);
     readCmd();
-
-    
 }

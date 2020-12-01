@@ -157,7 +157,7 @@
 
 class CR95 {
 public:
-    CR95(PinName SSI_0, PinName SSI_1, PinName CS, PinName IRQ_IN, PinName MOSI, PinName MISO, PinName CLK);
+    CR95(PinName SSI, PinName CS, PinName IRQ_IN, PinName MOSI, PinName MISO, PinName CLK);
     void init();
     void ReadCR95HF_ID();
     void Select_ISO_IEC_14443_A_Protocol();
@@ -181,8 +181,7 @@ private:
     void ISO14443A_HLTA();
     void ISO14443A_SelectSequence(unsigned short *SAKByte);
     void ProtocolSelect(unsigned short length, unsigned short protocol, unsigned short * parameters);
-    DigitalOut _SSI_0;
-    DigitalOut _SSI_1;
+    DigitalOut _SSI;
     DigitalOut _CS;
     DigitalOut _IRQ_IN;
     SPI _spi;
