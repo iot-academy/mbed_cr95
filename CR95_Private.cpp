@@ -45,7 +45,7 @@ void CR95::readCmd()
             break;
         }
         _CS = 1;
-        wait_ms(10);
+        WAIT_MS(10);
     }            
 }
 

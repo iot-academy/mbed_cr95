@@ -18,37 +18,37 @@ void CR95::init()
 {
     _SSI = 1;
     _IRQ_IN = 1;
-    wait_ms(100);
+    WAIT_MS(100);
     
     _IRQ_IN = 0;
-    wait_ms(100);
+    WAIT_MS(100);
     _IRQ_IN = 1;
-    wait_ms(100);
+    WAIT_MS(100);
     
     //reset
     _CS = 0;
     _spi.write(0x01);
     _CS = 1;
     
-    wait_ms(100);
+    WAIT_MS(100);
     
     _IRQ_IN = 0;
-    wait_ms(100);
+    WAIT_MS(100);
     _IRQ_IN = 1;
-    wait_ms(100);
+    WAIT_MS(100);
     
     
     //Initialise the SPI module
     _spi.format(8,3);//8 bits per transmission, mode 3
     _spi.frequency(1000000);//1MHz
-    wait_ms(100);
+    WAIT_MS(100);
     
     while(!EchoResponse())
     {
         _IRQ_IN = 1;
-        wait_ms(1);
+        WAIT_MS(1);
         _IRQ_IN = 0;
-        wait_ms(1);
+        WAIT_MS(1);
     }
 }
 

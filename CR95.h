@@ -155,6 +155,18 @@
 #define ECHO                                        0x55
 #define ECHORESPONSE                                0x55
 
+#define __ADDUNITS(x, y)              (x##y)
+
+#if MBED_MAJOR_VERSION == 2
+#define WAIT_MS(x)                    wait_ms(x)
+#elif  MBED_MAJOR_VERSION == 5
+#define WAIT_MS(x)                    Thread::wait(x)
+#elif  MBED_MAJOR_VERSION == 6
+#define WAIT_MS(x)                    ThisThread::sleep_for(__ADDUNITS(x,ms))
+#else
+#error "Unknown OS version"
+#endif
+
 class CR95 {
 public:
     CR95(PinName SSI, PinName CS, PinName IRQ_IN, PinName MOSI, PinName MISO, PinName CLK);
